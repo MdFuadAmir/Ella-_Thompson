@@ -17,7 +17,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed w-full z-50 bg-[#FFF9FB]/80 backdrop-blur-xl border-b border-[#F7D6E0]">
+    <nav className="fixed w-full z-50 bg-[#FFF9FB]/80 backdrop-blur-xl border-b border-[#F7D6E0] overflow-hidden">
 
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
@@ -96,7 +96,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mt-2 px-5 py-2 rounded-full bg-[#F6B3C6] text-white"
+              className="mt-2 px-5 py-2 rounded-full bg-[#F6B3C6] text-white w-fit"
             >
               Hire Me
             </motion.a>

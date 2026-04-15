@@ -11,26 +11,23 @@ import Services from "../Components/Services";
 import Skills from "../Components/Skills";
 import Testmonials from "../Components/Testmonials";
 
-
 const Home = () => {
-    return (
-        <div>
-            <Navbar/>
-            <Hero/>
-            <About/>
-            <Services/>
-            <Projects/>
-            <Skills/>
-            <Process/>
-            <Testmonials/>
-            <Experience/>
-            <CTA/>
-            <Contact/>
-            <Footer/>
-
-            
-        </div>
-    );
+  return (
+    <div className="overflow-hidden">
+      <Navbar />
+      <Hero />
+      <About />
+      <Services />
+      <Projects />
+      <Skills />
+      <Process />
+      <Testmonials />
+      <Experience />
+      <CTA />
+      <Contact />
+      <Footer />
+    </div>
+  );
 };
 
 export default Home;
