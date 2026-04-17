@@ -1,9 +1,9 @@
 import { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
-import img1 from "../assets/p1.jpg";
-import img2 from "../assets/p2.jpg";
-import img3 from "../assets/p3.jpg";
+import img1 from "../../public/Images/p1.png";
+import img2 from "../../public/Images/p2.png";
+import img3 from "../../public/Images/p3.png";
 
 const projects = [
   {

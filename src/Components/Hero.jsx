@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import owner from "../assets/ella.jpg";
+import owner from "../../public/Images/ella.png";
 import { Link } from "react-scroll";
 
 const floatAnimation = {
