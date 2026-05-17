@@ -1,116 +1,143 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import {
+  FaPalette,
   FaFigma,
-  FaPaintBrush,
-  FaPenNib,
-  FaLaptopCode,
   FaSearch,
+  FaLaptopCode,
+  FaLayerGroup,
   FaRegLightbulb,
+  FaToolbox,
 } from "react-icons/fa";
+import Title from "../Utils/Title";
 
-const skillsData = [
+const designSkills = [
   {
-    icon: <FaFigma />,
-    title: "UI Design",
-    desc: "Clean, modern and user-centered interface design using Figma.",
+    title: "UI Design Systems",
+    desc: "Creating elegant, scalable and visually consistent interfaces that feel polished and intuitive across digital products.",
   },
   {
-    icon: <FaPaintBrush />,
-    title: "Visual Design",
-    desc: "Soft color systems, typography and aesthetic layouts.",
+    title: "UX Research & Strategy",
+    desc: "Understanding user behavior, identifying friction points and transforming insights into thoughtful solutions.",
   },
   {
-    icon: <FaPenNib />,
-    title: "UX Research",
-    desc: "User behavior analysis and problem solving for better experience.",
+    title: "Wireframing & User Flow",
+    desc: "Structuring user journeys with clarity to create effortless and natural product experiences.",
   },
   {
-    icon: <FaLaptopCode />,
-    title: "Prototyping",
-    desc: "Interactive prototypes for real product feeling and flow.",
+    title: "Interactive Prototyping",
+    desc: "Designing realistic interactive flows that validate ideas before development begins.",
   },
-  {
-    icon: <FaSearch />,
-    title: "Usability Testing",
-    desc: "Testing designs with real users for improvement.",
-  },
-  {
-    icon: <FaRegLightbulb />,
-    title: "Creative Thinking",
-    desc: "Innovative ideas for unique and modern UI solutions.",
-  },
+];
+
+const tools = [
+  { icon: <FaFigma />, name: "Figma" },
+  { icon: <FaSearch />, name: "UX Audit" },
+  { icon: <FaLaptopCode />, name: "Prototype" },
+  { icon: <FaLayerGroup />, name: "Systems" },
+  { icon: <FaToolbox />, name: "Wireframe" },
+  { icon: <FaPalette />, name: "Visual UI" },
+  { icon: <FaRegLightbulb />, name: "Ideation" },
 ];
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-24 bg-[#FFF7F9]">
+    <section
+      id="skills"
+      className="py-24 md:py-28 bg-[#f8f3f3] dark:bg-[#1C1014] relative overflow-hidden border-b border-gray-200 dark:border-gray-600/50"
+    >
+      {/* Background */}
+      <div className="absolute w-96 h-96 bg-[#FBD5E0]/30 dark:bg-[#4A1D28]/20 rounded-full -top-20 -left-20 -z-10" />
+      <div className="absolute w-80 h-80 bg-[#FCE7EE]/40 dark:bg-[#3D141F]/30 rounded-full -bottom-20 -right-20 -z-10" />
+
       <div className="max-w-6xl mx-auto px-6">
+        {/* Header */}
+        <Title
+          icon={FaPalette}
+          subtitle="My Expertise"
+          title="Skills & Creative"
+          highlight="Tools"
+          desc="A structured workflow that ensures every project is user-focused,
+            clean and meaningful from idea to final product."
+          animation="rotate"
+        />
 
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <p className="text-[#E89CB0] font-medium text-sm md:text-base">
-            My Expertise
-          </p>
-
-          <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-semibold text-[#3A3A3A] leading-snug">
-            I design calm, meaningful & human-centered digital experiences
-          </h2>
-
-          <p className="mt-5 md:mt-6 max-w-xl mx-auto text-sm sm:text-base text-[#6B7280] leading-relaxed">
-            I am a UI/UX designer focused on simplicity, clarity and emotional
-            design. My goal is to make digital products feel natural, effortless
-            and beautiful.
-          </p>
-        </motion.div>
-
-        {/* Skills Grid */}
-        <div className="mt-16 grid sm:grid-cols-2 md:grid-cols-3 gap-10">
-
-          {skillsData.map((skill, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -8, scale: 1.03 }}
-              className="
-                relative p-7
-                bg-white/70 backdrop-blur-xl
-                rounded-[30px]
-                shadow-[0_10px_40px_rgba(232,156,176,0.15)]
-                border border-pink-100
-                overflow-hidden
-              "
-            >
-              {/* soft decorative blob */}
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-pink-200/30 rounded-full blur-2xl"></div>
-
-              {/* Icon */}
-              <div className="text-3xl text-[#E89CB0] mb-4 relative">
-                {skill.icon}
-              </div>
-
-              {/* Title */}
-              <h3 className="text-lg font-semibold text-[#3A3A3A]">
-                {skill.title}
+        {/* Content */}
+        <div className="mt-20 grid md:grid-cols-2 gap-16">
+          {/* Left Side */}
+          <motion.div
+            initial={{ opacity: 0, x: -35 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-3 mb-10">
+              <FaRegLightbulb className="text-[#DE7390]" />
+              <h3 className="text-xl font-semibold text-[#3A3A3A] dark:text-[#F7EBEF]">
+                Design Capabilities
               </h3>
+            </div>
 
-              {/* Desc */}
-              <p className="mt-2 text-sm text-[#6B7280] leading-relaxed">
-                {skill.desc}
-              </p>
-            </motion.div>
-          ))}
+            <div className="space-y-10">
+              {designSkills.map((skill, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ x: 10, y: -2 }}
+                  transition={{ duration: 0.3 }}
+                  className="group cursor-pointer"
+                >
+                  <h4 className="text-lg font-semibold text-[#3A3A3A] dark:text-[#F7EBEF] group-hover:text-[#DE7390] dark:group-hover:text-[#EAA0B4] transition-colors duration-300">
+                    {skill.title}
+                  </h4>
+
+                  <p className="mt-3 text-sm text-gray-500 dark:text-[#CBB5BC] leading-relaxed max-w-lg">
+                    {skill.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right Side */}
+          <motion.div
+            initial={{ opacity: 0, x: 35 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-3 mb-10">
+              <FaToolbox className="text-[#DE7390]" />
+              <h3 className="text-xl font-semibold text-[#3A3A3A] dark:text-[#F7EBEF]">
+                Tools I Use
+              </h3>
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              {tools.map((tool, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.08 }}
+                  whileHover={{
+                    y: -6,
+                    scale: 1.05,
+                    boxShadow: "0 12px 25px rgba(222,115,144,0.14)",
+                  }}
+                  className="px-5 py-4 rounded-2xl bg-white/80 dark:bg-[#2A181D] border border-[#F7D6E0] dark:border-[#522531] flex items-center gap-3 transition-all duration-300"
+                >
+                  <span className="text-[#DE7390] dark:text-[#EAA0B4] text-lg">
+                    {tool.icon}
+                  </span>
+
+                  <p className="text-sm font-medium text-[#3A3A3A] dark:text-[#F7EBEF] whitespace-nowrap">
+                    {tool.name}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
-
       </div>
     </section>
   );

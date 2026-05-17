@@ -1,6 +1,6 @@
 import About from "../Components/About";
 import Contact from "../Components/Contact";
-import CTA from "../Components/CTA";
+import DesignPlayground from "../Components/DesignPlayground";
 import Experience from "../Components/Experience";
 import Footer from "../Components/Footer";
 import Hero from "../Components/Hero";
@@ -14,18 +14,16 @@ import Testmonials from "../Components/Testmonials";
 const Home = () => {
   return (
     <div className="overflow-hidden">
-      <Navbar />
       <Hero />
       <About />
       <Services />
       <Projects />
-      <Skills />
       <Process />
+      <Skills />
       <Testmonials />
       <Experience />
-      <CTA />
+      <DesignPlayground />
       <Contact />
-      <Footer />
     </div>
   );
 };

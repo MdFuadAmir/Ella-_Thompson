@@ -1,157 +1,278 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
-import emailjs from "@emailjs/browser";
 import { useState } from "react";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import {
+  FaArrowRight,
+  FaSpinner,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaDribbble,
+  FaBehance,
+  FaLinkedin,
+} from "react-icons/fa";
 import { toast } from "react-toastify";
+import { FaPaperPlane } from "react-icons/fa6";
+import Title from "../Utils/Title";
 
 const Contact = () => {
-  const { register, handleSubmit, reset } = useForm();
-  const [loading, setLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const onSubmit = (data) => {
-    setLoading(true);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
-    emailjs
-      .send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+  // Axios Form Submission
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    try {
+      const response = await axios.post(
+        "https://grace-wilson-server.vercel.app/send-me",
         data,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      )
-      .then(() => {
-        setLoading(false);
-        // setSuccess(true);
+      );
+      if (response.status === 200 || response.status === 201) {
+        toast.success("message send successfully");
         reset();
-        toast.success("Message sent successfully");
-      })
-      .catch(() => {
-        setLoading(false);
-        toast.error("Failed to send message!");
-      });
+      }
+    } catch (error) {
+      toast.error("Failed to send message");
+      console.error("Form submission error:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Framer Motion Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+    },
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   return (
-    <section id="contact" className="py-28 bg-[#FFF7F9] relative overflow-hidden">
-      {/* glow */}
-      <div className="absolute w-72 h-72 bg-[#FAD4DC] blur-[120px] rounded-full -top-24 -left-24" />
-      <div className="absolute w-72 h-72 bg-[#F7C6D0] blur-[120px] rounded-full -bottom-24 -right-24" />
+    <section
+      id="contact"
+      className="py-24 md:py-28 bg-[#FFF9FB] dark:bg-[#1C1014] text-[#3A3A3A] dark:text-[#F7EBEF] transition-colors duration-300 relative overflow-hidden"
+    >
+      <motion.div
+        className="max-w-6xl mx-auto px-6"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        {/* === SECTION HEADER === */}
+        <Title
+          icon={FaPaperPlane}
+          subtitle="Get In Touch"
+          title="Let’s Build Something "
+          highlight="Beautiful"
+          desc="Have a project idea, collaboration opportunity or just want to say
+            hello? Let’s connect and create meaningful digital experiences
+            together."
+          animation="rotate"
+        />
 
-      <div className="max-w-6xl mx-auto px-6">
-        {/* HEADER */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <p className="text-[#E89CB0] text-sm font-medium">Contact</p>
-
-          <h2 className="mt-3 text-3xl md:text-4xl font-semibold text-[#3A3A3A]">
-            Let’s Work Together
-          </h2>
-
-          <p className="mt-4 text-sm md:text-base text-[#6B7280] max-w-xl mx-auto">
-            Have an idea or project? Let’s create something amazing together.
-          </p>
-        </motion.div>
-
-        {/* CONTENT */}
-        <div className="mt-16 grid md:grid-cols-2 gap-10 items-start">
-          {/* LEFT INFO */}
+        {/* === 2 COLUMN LAYOUT (NO CARDS / NO BOXES) === */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start mt-12 md:mt-24">
+          {/* COLUMN 1: CONTACT INFO & DETAILS */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-6"
+            variants={fadeInUp}
+            className="space-y-10 order-2 md:order-1"
           >
-            {/* card 1 */}
-            <div className="flex items-center gap-4 bg-white/70 backdrop-blur-xl border border-pink-100 p-5 rounded-2xl shadow-md">
-              <FaEnvelope className="text-[#E89CB0] text-xl" />
-              <div>
-                <p className="text-sm text-[#6B7280]">Email</p>
-                <p className="text-[#3A3A3A] font-medium">
-                  mdfuadamir@gmail.com
-                </p>
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold text-[#DE7390] dark:text-[#EAA0B4] mb-3">
+                Ella Thompson
+              </h3>
+              <p className="text-sm sm:text-base text-gray-500 dark:text-[#CBB5BC] leading-relaxed max-w-sm">
+                Have an exciting project idea or want to upscale your product
+                UX? Feel free to reach out anytime.
+              </p>
+            </div>
+
+            {/* Direct Info List */}
+            <div className="space-y-6">
+              {/* Email */}
+              <div className="flex items-center gap-4 group cursor-pointer">
+                <div className="text-lg text-[#DE7390] dark:text-[#EAA0B4] transition-transform duration-300 group-hover:scale-110">
+                  <FaEnvelope />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider">
+                    Email Me
+                  </p>
+                  <a
+                    href="mailto:ella@example.com"
+                    className="text-sm sm:text-base hover:text-[#DE7390] dark:hover:text-[#EAA0B4] transition-colors"
+                  >
+                    mdfuadamir@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Address */}
+              <div className="flex items-center gap-4">
+                <div className="text-lg text-[#DE7390] dark:text-[#EAA0B4]">
+                  <FaMapMarkerAlt />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider">
+                    Location
+                  </p>
+                  <p className="text-sm sm:text-base text-zinc-600 dark:text-[#CBB5BC]">
+                    Kushtia, Bangladesh
+                  </p>
+                </div>
               </div>
             </div>
 
-            {/* card 2 */}
-            <div className="flex items-center gap-4 bg-white/70 backdrop-blur-xl border border-pink-100 p-5 rounded-2xl shadow-md">
-              <FaPhone className="text-[#E89CB0] text-xl" />
-              <div>
-                <p className="text-sm text-[#6B7280]">Phone</p>
-                <p className="text-[#3A3A3A] font-medium">+880 1705470131</p>
-              </div>
-            </div>
-
-            {/* card 3 */}
-            <div className="flex items-center gap-4 bg-white/70 backdrop-blur-xl border border-pink-100 p-5 rounded-2xl shadow-md">
-              <FaMapMarkerAlt className="text-[#E89CB0] text-xl" />
-              <div>
-                <p className="text-sm text-[#6B7280]">Location</p>
-                <p className="text-[#3A3A3A] font-medium">
-                  Kushtia, Bangladesh
-                </p>
+            {/* Social Profiles */}
+            <div className="pt-4">
+              <p className="text-xs text-gray-400 dark:text-gray-500 font-semibold uppercase tracking-wider mb-4">
+                Follow My UI Journey
+              </p>
+              <div className="flex items-center gap-6">
+                <a
+                  href="#"
+                  className="text-xl text-gray-400 hover:text-[#DE7390] dark:hover:text-[#EAA0B4] transition-colors"
+                  aria-label="Dribbble"
+                >
+                  <FaDribbble />
+                </a>
+                <a
+                  href="#"
+                  className="text-xl text-gray-400 hover:text-[#DE7390] dark:hover:text-[#EAA0B4] transition-colors"
+                  aria-label="Behance"
+                >
+                  <FaBehance />
+                </a>
+                <a
+                  href="#"
+                  className="text-xl text-gray-400 hover:text-[#DE7390] dark:hover:text-[#EAA0B4] transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin />
+                </a>
               </div>
             </div>
           </motion.div>
 
-          {/* RIGHT FORM */}
-          <motion.form
-            onSubmit={handleSubmit(onSubmit)}
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="
-              bg-white/70 backdrop-blur-xl
-              border border-pink-100
-              rounded-3xl
-              shadow-lg
-              p-8
-              space-y-5
-            "
-          >
-            <input
-              {...register("name", { required: true })}
-              placeholder="Your Name"
-              className="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:border-[#E89CB0]"
-            />
+          {/* COLUMN 2: WORKING CONTACT FORM */}
+          <motion.div variants={fadeInUp} className="order-1 md:order-2">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              {/* Name Input */}
+              <div className="flex flex-col">
+                <label className="text-xs font-semibold tracking-wider text-gray-400 dark:text-gray-500 uppercase mb-1">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="John Doe"
+                  {...register("name", { required: "Name is required" })}
+                  className={`w-full bg-transparent border-b ${
+                    errors.name
+                      ? "border-rose-500"
+                      : "border-[#F7D6E0] dark:border-[#522531]"
+                  } focus:border-[#DE7390] dark:focus:border-[#EAA0B4] outline-none py-2 text-base transition-colors placeholder-gray-300 dark:placeholder-zinc-700`}
+                />
+                {errors.name && (
+                  <span className="text-xs text-rose-500 mt-1">
+                    {errors.name.message}
+                  </span>
+                )}
+              </div>
 
-            <input
-              {...register("email", { required: true })}
-              placeholder="Your Email"
-              className="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:border-[#E89CB0]"
-            />
+              {/* Email Input */}
+              <div className="flex flex-col">
+                <label className="text-xs font-semibold tracking-wider text-gray-400 dark:text-gray-500 uppercase mb-1">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  placeholder="john@example.com"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^\S+@\S+$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  className={`w-full bg-transparent border-b ${
+                    errors.email
+                      ? "border-rose-500"
+                      : "border-[#F7D6E0] dark:border-[#522531]"
+                  } focus:border-[#DE7390] dark:focus:border-[#EAA0B4] outline-none py-2 text-base transition-colors placeholder-gray-300 dark:placeholder-zinc-700`}
+                />
+                {errors.email && (
+                  <span className="text-xs text-rose-500 mt-1">
+                    {errors.email.message}
+                  </span>
+                )}
+              </div>
 
-            <textarea
-              {...register("message", { required: true })}
-              rows="5"
-              placeholder="Your Message"
-              className="w-full px-4 py-3 rounded-xl border border-pink-100 focus:outline-none focus:border-[#E89CB0]"
-            />
+              {/* Message Input */}
+              <div className="flex flex-col">
+                <label className="text-xs font-semibold tracking-wider text-gray-400 dark:text-gray-500 uppercase mb-1">
+                  Your Message
+                </label>
+                <textarea
+                  rows="8"
+                  placeholder="Tell me about your project goals..."
+                  {...register("message", {
+                    required: "Message cannot be empty",
+                  })}
+                  className={`w-full bg-transparent border-b resize-none ${
+                    errors.message
+                      ? "border-rose-500"
+                      : "border-[#F7D6E0] dark:border-[#522531]"
+                  } focus:border-[#DE7390] dark:focus:border-[#EAA0B4] outline-none py-2 text-base transition-colors placeholder-gray-300 dark:placeholder-zinc-700`}
+                />
+                {errors.message && (
+                  <span className="text-xs text-rose-500 mt-1">
+                    {errors.message.message}
+                  </span>
+                )}
+              </div>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="
-                w-full py-3
-                bg-[#E89CB0]
-                text-white
-                rounded-full
-                shadow-md
-                hover:scale-105 transition
-              "
-            >
-              {loading ? "Sending..." : "Send Message"}
-            </button>
-          </motion.form>
+              {/* Submit Button */}
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto px-8 py-3.5 bg-[#F6B3C6] dark:bg-[#C95B79] text-white rounded-full font-semibold shadow-sm hover:scale-105 active:scale-95 disabled:scale-100 disabled:opacity-60 transition-all flex items-center justify-center gap-2 cursor-pointer group"
+                >
+                  {isSubmitting ? (
+                    <>
+                      Sending...
+                      <FaSpinner className="animate-spin text-sm" />
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <FaArrowRight className="text-sm transition-transform group-hover:translate-x-1" />
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

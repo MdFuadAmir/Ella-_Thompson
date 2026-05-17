@@ -6,113 +6,169 @@ import {
   FaLaptopCode,
   FaMobileAlt,
 } from "react-icons/fa";
+import { FaGear } from "react-icons/fa6";
+import Title from "../Utils/Title";
 
 const Services = () => {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0 },
+  };
+
   return (
-    <section id="services" className="py-28 bg-[#FFF7F9]">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+    <section
+      id="services"
+      className="relative py-24 bg-[#f8f3f3] dark:bg-[#1C1014] overflow-hidden border-b border-gray-200 dark:border-gray-600/50"
+    >
+      {/* soft background like hero/about */}
+      <div className="absolute w-96 h-96 bg-[#FBD5E0]/30 dark:bg-[#4A1D28]/20 rounded-full -top-20 -left-20 -z-10" />
+      <div className="absolute w-80 h-80 bg-[#FCE7EE]/40 dark:bg-[#3D141F]/30 rounded-full -bottom-20 -right-20 -z-10" />
 
-        {/* LEFT CONTENT (Story Section) */}
+      <div className="max-w-6xl mx-auto px-6">
+        {/* HEADER */}
+        <Title
+          icon={FaGear}
+          subtitle="My Services"
+          title="I design digital products that feel"
+          highlight="soft, modern & meaningful"
+          desc="I focus on crafting clean UI systems, emotional UX flows and modern interfaces that feel effortless and human-centered."
+          animation="spin"
+        />
+
+        {/* CONTENT */}
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          className="mt-16 grid md:grid-cols-2 gap-12 items-start"
         >
-          <p className="text-[#E89CB0] font-medium">
-            My Services
-          </p>
+          {/* LEFT STORY */}
+          <div>
+            <motion.h3
+              variants={item}
+              className="text-2xl md:text-3xl font-semibold text-[#3A3A3A] dark:text-[#F7EBEF] leading-snug"
+            >
+              Design is not just visuals — it’s{" "}
+              <span className="text-[#DE7390]">experience & emotion</span>.
+            </motion.h3>
 
-          <h2 className="mt-3 text-3xl md:text-4xl font-semibold text-[#3A3A3A] leading-snug">
-            I design digital products that feel soft, modern & meaningful
-          </h2>
+            <motion.p
+              variants={item}
+              className="mt-6 text-gray-500 dark:text-[#CBB5BC] text-sm sm:text-base leading-relaxed"
+            >
+              Every interface I create is built with clarity, usability and
+              emotional impact. My goal is to make digital products feel simple
+              and intuitive for real users.
+            </motion.p>
 
-          <p className="mt-5 text-[#6B7280] leading-relaxed">
-            I don’t just design screens — I design experiences.
-            Every project focuses on clarity, emotional connection and usability.
-            My goal is to make interfaces feel effortless and human.
-          </p>
+            <motion.div
+              variants={item}
+              className="mt-8 space-y-2 text-sm text-gray-500 dark:text-[#CBB5BC]"
+            >
+              <p>✔ Clean UI systems with strong hierarchy</p>
+              <p>✔ UX focused interaction design</p>
+              <p>✔ Modern minimal aesthetic approach</p>
+            </motion.div>
+          </div>
 
-          {/* highlight points */}
-          <div className="mt-6 space-y-3 text-sm text-[#6B7280]">
-            <p>✔ Clean UI systems with strong visual hierarchy</p>
-            <p>✔ User-focused UX flow and interaction design</p>
-            <p>✔ Modern, minimal and emotional design approach</p>
+          {/* RIGHT SERVICES (NO BOXY LOOK — CLEAN ROW DESIGN) */}
+          <div className="space-y-10">
+            {/* ITEM 1 */}
+            <motion.div variants={item} className="flex gap-4 group">
+              <motion.div
+                animate={{ rotate: [0, 8, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="text-[#DE7390] text-2xl mt-1 group-hover:scale-110 transition"
+              >
+                <FaFigma />
+              </motion.div>
+
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold text-[#3A3A3A] dark:text-[#F7EBEF] group-hover:text-[#DE7390] transition">
+                  UI Design
+                </h4>
+                <p className="text-sm text-gray-500 dark:text-[#CBB5BC] mt-2 leading-relaxed">
+                  Clean and structured interface design using Figma with modern
+                  UI systems.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* ITEM 2 */}
+            <motion.div variants={item} className="flex gap-4 group">
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="text-[#DE7390] text-2xl mt-1 group-hover:scale-110 transition"
+              >
+                <FaPaintBrush />
+              </motion.div>
+
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold text-[#3A3A3A] dark:text-[#F7EBEF] group-hover:text-[#DE7390] transition">
+                  Visual Design
+                </h4>
+                <p className="text-sm text-gray-500 dark:text-[#CBB5BC] mt-2 leading-relaxed">
+                  Soft color systems, typography and aesthetic layout building
+                  with harmony.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* ITEM 3 */}
+            <motion.div variants={item} className="flex gap-4 group">
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="text-[#DE7390] text-2xl mt-1 group-hover:scale-110 transition"
+              >
+                <FaLaptopCode />
+              </motion.div>
+
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold text-[#3A3A3A] dark:text-[#F7EBEF] group-hover:text-[#DE7390] transition">
+                  Web Design
+                </h4>
+                <p className="text-sm text-gray-500 dark:text-[#CBB5BC] mt-2 leading-relaxed">
+                  Responsive and modern website design focused on usability and
+                  performance.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* ITEM 4 */}
+            <motion.div variants={item} className="flex gap-4 group">
+              <motion.div
+                animate={{ rotate: [0, -10, 10, 0] }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="text-[#DE7390] text-2xl mt-1 group-hover:scale-110 transition"
+              >
+                <FaMobileAlt />
+              </motion.div>
+
+              <div>
+                <h4 className="text-lg md:text-xl font-semibold text-[#3A3A3A] dark:text-[#F7EBEF] group-hover:text-[#DE7390] transition">
+                  Mobile UI
+                </h4>
+                <p className="text-sm text-gray-500 dark:text-[#CBB5BC] mt-2 leading-relaxed">
+                  Mobile-first interface design optimized for smooth user
+                  experience.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
-
-        {/* RIGHT CONTENT (Feature Blocks) */}
-        <div className="space-y-6">
-
-          {/* Card 1 */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
-            viewport={{ once: true }}
-            className="flex gap-4 p-5 bg-white/70 backdrop-blur-xl rounded-2xl shadow-md border border-pink-100"
-          >
-            <FaFigma className="text-[#E89CB0] text-2xl mt-1" />
-            <div>
-              <h3 className="font-semibold text-[#3A3A3A]">UI Design</h3>
-              <p className="text-sm text-[#6B7280]">
-                Modern interface design using Figma with clean structure.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 2 */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="flex gap-4 p-5 bg-white/70 backdrop-blur-xl rounded-2xl shadow-md border border-pink-100"
-          >
-            <FaPaintBrush className="text-[#E89CB0] text-2xl mt-1" />
-            <div>
-              <h3 className="font-semibold text-[#3A3A3A]">Visual Design</h3>
-              <p className="text-sm text-[#6B7280]">
-                Soft color systems, typography and aesthetic layout building.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 3 */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="flex gap-4 p-5 bg-white/70 backdrop-blur-xl rounded-2xl shadow-md border border-pink-100"
-          >
-            <FaLaptopCode className="text-[#E89CB0] text-2xl mt-1" />
-            <div>
-              <h3 className="font-semibold text-[#3A3A3A]">Web Design</h3>
-              <p className="text-sm text-[#6B7280]">
-                Responsive website design with modern UI systems.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Card 4 */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-            className="flex gap-4 p-5 bg-white/70 backdrop-blur-xl rounded-2xl shadow-md border border-pink-100"
-          >
-            <FaMobileAlt className="text-[#E89CB0] text-2xl mt-1" />
-            <div>
-              <h3 className="font-semibold text-[#3A3A3A]">Mobile UI</h3>
-              <p className="text-sm text-[#6B7280]">
-                Clean mobile app interfaces optimized for usability.
-              </p>
-            </div>
-          </motion.div>
-
-        </div>
       </div>
     </section>
   );
