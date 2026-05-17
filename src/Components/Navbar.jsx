@@ -47,12 +47,12 @@ const Navbar = () => {
   };
 
   const goHome = () => {
-    navigate("/");
     setOpen(false);
 
     setTimeout(() => {
+      navigate("/");
       window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 100);
+    }, 200);
   };
 
   return (
@@ -160,7 +160,14 @@ I'd love to discuss the project details, timeline, and how we can create somethi
                 className="flex items-center justify-between mb-8 pb-4 
               border-b border-[#F7D6E0] dark:border-white/10"
               >
-                <Logo />
+                <div
+                  onClick={() => {
+                    goHome();
+                  }}
+                  className="cursor-pointer"
+                >
+                  <Logo />
+                </div>
 
                 <button
                   onClick={() => setOpen(false)}
@@ -192,24 +199,29 @@ I'd love to discuss the project details, timeline, and how we can create somethi
               <div className="pt-6 border-t border-[#F7D6E0] dark:border-white/10">
                 <a
                   href="#contact"
-                  onClick={() => setOpen(true)}
                   onClick={() => {
+                    setOpen(false);
+
+                    handleNav("#contact");
+
                     const textarea = document.querySelector(
                       'textarea[name="message"]',
                     );
+
                     if (textarea) {
                       textarea.value = `Hi Md Fuad Amir,
 
-I'm interested in working with you on a UI/UX design project. 
+I'm interested in working with you on a UI/UX design project.
 I'd love to discuss the project details, timeline, and how we can create something meaningful together.`;
+
                       textarea.dispatchEvent(
                         new Event("input", { bubbles: true }),
                       );
                     }
                   }}
                   className="block lg:hidden px-6 py-3 rounded-xl text-center text-sm font-medium 
-            bg-[#F6B3C6] dark:bg-[#C95B79]
-            text-white shadow-md transition"
+  bg-[#F6B3C6] dark:bg-[#C95B79]
+  text-white shadow-md transition"
                 >
                   Let’s Work Together
                 </a>
