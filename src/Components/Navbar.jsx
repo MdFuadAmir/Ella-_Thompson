@@ -32,11 +32,6 @@ const Navbar = () => {
     }, 150);
   };
 
-  // const handleNav = (id) => {
-  //   setActive(id);
-  //   setOpen(false);
-  // };
-
   const handleNav = (id) => {
     setActive(id);
     setOpen(false);
@@ -63,7 +58,8 @@ const Navbar = () => {
   return (
     <nav
       className="fixed w-full top-0 left-0 z-50 backdrop-blur-xl shadow-sm 
-    bg-[#FFF9FB]/90 dark:bg-[#0F0A0D]/90 
+    
+    bg-[#f6eeee]/70 dark:bg-[#1d1115]/70
     border-b border-[#F7D6E0] dark:border-white/10 
     transition-all duration-500"
     >

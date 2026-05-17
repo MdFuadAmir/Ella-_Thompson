@@ -17,7 +17,7 @@ import { FaPaperPlane } from "react-icons/fa6";
 import Title from "../Utils/Title";
 
 const Contact = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -26,23 +26,25 @@ const Contact = () => {
     formState: { errors },
   } = useForm();
 
+  const SITE_NAME = "Ella Thompson";
+  const SUB_TITLE = "UI/UX Designer Portfoleo";
   // Axios Form Submission
   const onSubmit = async (data) => {
-    setIsSubmitting(true);
     try {
-      const response = await axios.post(
-        "https://grace-wilson-server.vercel.app/send-me",
-        data,
-      );
-      if (response.status === 200 || response.status === 201) {
-        toast.success("message send successfully");
-        reset();
-      }
-    } catch (error) {
-      toast.error("Failed to send message");
-      console.error("Form submission error:", error);
+      setLoading(true);
+
+      await axios.post("https://compact-server.vercel.app/send-email", {
+        ...data,
+        siteName: SITE_NAME,
+        subtitle: SUB_TITLE,
+      });
+
+      toast.success("Message sent successfully 🚀");
+      reset();
+    } catch {
+      toast.error("Something went wrong!");
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
@@ -67,7 +69,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 md:py-28 bg-[#FFF9FB] dark:bg-[#1C1014] text-[#3A3A3A] dark:text-[#F7EBEF] transition-colors duration-300 relative overflow-hidden"
+      className="py-24 md:py-28 bg-[#f8f3f3] dark:bg-[#1C1014] text-[#3A3A3A] dark:text-[#F7EBEF] relative overflow-hidden"
     >
       <motion.div
         className="max-w-6xl mx-auto px-6"
@@ -173,7 +175,10 @@ const Contact = () => {
           </motion.div>
 
           {/* COLUMN 2: WORKING CONTACT FORM */}
-          <motion.div variants={fadeInUp} className="order-1 md:order-2">
+          <motion.div
+            variants={fadeInUp}
+            className="order-1 md:order-2 mt-12 md:mt-0"
+          >
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               {/* Name Input */}
               <div className="flex flex-col">
@@ -253,10 +258,10 @@ const Contact = () => {
               <div className="pt-4">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={loading}
                   className="w-full sm:w-auto px-8 py-3.5 bg-[#F6B3C6] dark:bg-[#C95B79] text-white rounded-full font-semibold shadow-sm hover:scale-105 active:scale-95 disabled:scale-100 disabled:opacity-60 transition-all flex items-center justify-center gap-2 cursor-pointer group"
                 >
-                  {isSubmitting ? (
+                  {loading ? (
                     <>
                       Sending...
                       <FaSpinner className="animate-spin text-sm" />

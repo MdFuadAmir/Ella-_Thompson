@@ -1,62 +1,111 @@
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { FaFacebook, FaLinkedin, FaGithub, FaDribbble } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaLinkedin,
+  FaGithub,
+  FaDribbble,
+  FaArrowUp,
+} from "react-icons/fa";
 import Logo from "../Utils/Logo";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#FFF7F9] relative overflow-hidden pt-20 pb-10">
-
+    <footer className="relative overflow-hidden pb-10 bg-[#FBEAF0] dark:bg-[#120B0E] border-t border-[#F4D2DD] dark:border-[#2A181D]">
       {/* glow */}
-      <div className="absolute w-72 h-72 bg-[#FAD4DC] blur-[120px] rounded-full -top-24 -left-24" />
-      <div className="absolute w-72 h-72 bg-[#F7C6D0] blur-[120px] rounded-full -bottom-24 -right-24" />
+      <div className="absolute w-80 h-80 bg-[#F6B3C6]/30 blur-[140px] rounded-full top-0 left-0" />
+      <div className="absolute w-80 h-80 bg-[#DE7390]/20 blur-[140px] rounded-full bottom-0 right-0" />
 
-      <div className="max-w-6xl mx-auto px-6">
-
-        {/* MAIN */}
+      <div className="relative max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-center"
         >
+          {/* top area */}
+          <div className="grid md:grid-cols-3 gap-12 items-start pt-10">
+            {/* Brand */}
+            <div>
+              <Logo />
 
-          {/* name / brand */}
-          <div className="flex justify-center">
-          <Logo/>
+              <p className="mt-5 text-sm leading-relaxed text-gray-500 dark:text-[#BFA8AF] max-w-sm">
+                Crafting clean, modern and meaningful UI/UX experiences that
+                balance aesthetics with usability.
+              </p>
+            </div>
+
+            {/* Navigation */}
+            <div>
+              <h4 className="text-[#DE7390] dark:text-[#EAA0B4] font-semibold mb-5">
+                Navigation
+              </h4>
+
+              <div className="space-y-3 text-sm">
+                {["Home", "About", "Services", "Projects", "Contact"].map(
+                  (item) => (
+                    <a
+                      key={item}
+                      href={`#${item.toLowerCase()}`}
+                      className="block text-gray-500 dark:text-[#CBB5BC] hover:text-[#DE7390] transition"
+                    >
+                      {item}
+                    </a>
+                  ),
+                )}
+              </div>
+            </div>
+
+            {/* Connect */}
+            <div>
+              <h4 className="text-[#DE7390] dark:text-[#EAA0B4] font-semibold mb-5">
+                Let’s Connect
+              </h4>
+
+              <div className="flex gap-4">
+                {[FaFacebook, FaLinkedin, FaGithub, FaDribbble].map(
+                  (Icon, i) => (
+                    <motion.a
+                      key={i}
+                      href="#"
+                      whileHover={{ y: -5, scale: 1.08 }}
+                      className="w-11 h-11 rounded-2xl flex items-center justify-center
+                    bg-white/70 dark:bg-[#211419]
+                    text-[#DE7390] dark:text-[#EAA0B4]
+                    shadow-md"
+                    >
+                      <Icon />
+                    </motion.a>
+                  ),
+                )}
+              </div>
+
+              <p className="mt-5 text-sm text-gray-500 dark:text-[#BFA8AF]">
+                Ready to build something meaningful together.
+              </p>
+            </div>
           </div>
 
-          <p className="mt-3 text-sm text-[#6B7280] max-w-md mx-auto">
-            UI/UX Designer focused on creating clean, modern and meaningful digital experiences.
-          </p>
+          {/* divider */}
+          <div className="my-10 border-t border-[#F2CAD6] dark:border-[#2A181D]" />
 
-          {/* social icons */}
-          <div className="mt-6 flex justify-center gap-5 text-[#E89CB0] text-xl">
-            <a href="#"><FaFacebook /></a>
-            <a href="#"><FaLinkedin /></a>
-            <a href="#"><FaGithub /></a>
-            <a href="#"><FaDribbble /></a>
+          {/* bottom */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-5">
+            <p className="text-xs text-gray-400 dark:text-[#8F7A81]">
+              © 2026 All Rights Reserved • Designed by Md Fuad Amir
+            </p>
+
+            <motion.a
+              href="#home"
+              whileHover={{ y: -4 }}
+              className="w-11 h-11 rounded-full flex items-center justify-center
+              bg-[#F6B3C6] dark:bg-[#C95B79]
+              text-white shadow-lg"
+            >
+              <FaArrowUp />
+            </motion.a>
           </div>
-
-          {/* nav links */}
-          <div className="mt-8 flex flex-wrap justify-center gap-6 text-sm text-[#6B7280]">
-            <a href="#home" className="hover:text-[#E89CB0] transition">Home</a>
-            <a href="#skills" className="hover:text-[#E89CB0] transition">Skills</a>
-            <a href="#projects" className="hover:text-[#E89CB0] transition">Projects</a>
-            <a href="#contact" className="hover:text-[#E89CB0] transition">Contact</a>
-          </div>
-
         </motion.div>
-
-        {/* divider */}
-        <div className="my-10 border-t border-pink-100"></div>
-
-        {/* bottom */}
-        <div className="text-center text-xs text-[#9CA3AF]">
-          © 2026 All Rights Reserved • Designed with ❤️ by You
-        </div>
-
       </div>
     </footer>
   );

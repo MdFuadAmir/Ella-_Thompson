@@ -2,53 +2,10 @@
 import { motion } from "framer-motion";
 import { FaPalette } from "react-icons/fa";
 import Title from "../Utils/Title";
+import { projects } from "../assets/ProjectData";
+
 
 const DesignPlayground = () => {
-  const playgroundItems = [
-    {
-      id: 1,
-      title: "E-Commerce App Interaction",
-      category: "Mobile Design",
-      image:
-        "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 2,
-      title: "SaaS Dashboard Dark Mode",
-      category: "Web App",
-      image:
-        "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 3,
-      title: "Smart Home UI Concept",
-      category: "UI Components",
-      image:
-        "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 4,
-      title: "Crypto Wallet Interface",
-      category: "Mobile UI",
-      image:
-        "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 5,
-      title: "Travel Booking UX Flow",
-      category: "UX Design",
-      image:
-        "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=600&auto=format&fit=crop",
-    },
-    {
-      id: 6,
-      title: "Music Player Glass UI",
-      category: "UI Experiment",
-      image:
-        "https://images.unsplash.com/photo-1618005198143-e528346d96f9?q=80&w=600&auto=format&fit=crop",
-    },
-  ];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -98,7 +55,7 @@ const DesignPlayground = () => {
 
         {/* GRID */}
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {playgroundItems.map((item) => (
+          {projects.map((item) => (
             <motion.div
               key={item.id}
               variants={itemVariants}
