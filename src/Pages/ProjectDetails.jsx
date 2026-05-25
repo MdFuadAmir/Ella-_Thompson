@@ -13,6 +13,7 @@ import {
 
 import { projects } from "../assets/ProjectData";
 import { useEffect } from "react";
+import SEO from "../Utils/SEO";
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -31,6 +32,12 @@ const ProjectDetails = () => {
   }, [id]);
   return (
     <section className="min-h-screen py-24 bg-[#FFF9FB] dark:bg-[#1C1014] relative overflow-hidden">
+      <SEO
+        title={`${project.title} | Ella Thompson`}
+        description={project.subtitle}
+        image={project.image}
+        url={`https://ella-thompson.vercel.app/project-details/${project.id}`}
+      />
       {/* background glow */}
       <div className="absolute w-72 h-72 bg-[#FAD4DC] dark:bg-[#4A1D28]/30 blur-[120px] rounded-full -top-24 -left-24" />
       <div className="absolute w-72 h-72 bg-[#F7C6D0] dark:bg-[#3D141F]/30 blur-[120px] rounded-full -bottom-24 -right-24" />

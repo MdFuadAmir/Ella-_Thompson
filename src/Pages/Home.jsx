@@ -10,10 +10,15 @@ import Projects from "../Components/Projects";
 import Services from "../Components/Services";
 import Skills from "../Components/Skills";
 import Testmonials from "../Components/Testmonials";
+import SEO from "../Utils/SEO";
 
 const Home = () => {
   return (
     <div className="overflow-hidden">
+      <SEO
+        title="Ella Thompson | UI/UX Designer"
+        description="Creative UI/UX designer crafting modern, user-friendly, and visually engaging digital experiences for web and mobile products."
+      />
       <Hero />
       <About />
       <Services />
